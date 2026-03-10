@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# car-rental
-=======
 # basic_sceleton
 
 Minimal Next.js + TypeScript starter for initial commit.
@@ -25,4 +22,3 @@ Minimal Next.js + TypeScript starter for initial commit.
 npm install
 npm run dev
 ```
->>>>>>> 3d4d2a6 (basic skeleton for the project)
