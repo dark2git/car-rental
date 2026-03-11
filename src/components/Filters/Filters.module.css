@@ -1,0 +1,141 @@
+.panel {
+  display: flex;
+  gap: 16px;
+  align-items: end;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  position: relative;
+}
+
+.brandField {
+  width: 204px;
+}
+
+.priceField {
+  width: 196px;
+}
+
+.mileageField {
+  width: 320px;
+}
+
+.label {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: var(--gray);
+}
+
+.selectBtn,
+.input {
+  border: 0;
+  border-radius: 12px;
+  height: 44px;
+  padding: 0 16px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--main);
+  background: var(--inputs);
+}
+
+.selectBtn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+.chevron {
+  font-size: 14px;
+  color: var(--gray);
+  transition: transform 0.15s ease;
+}
+
+.chevronUp {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  max-height: 272px;
+  overflow-y: auto;
+  border: 1px solid var(--inputs);
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: 0 4px 36px rgba(0, 0, 0, 0.02);
+  z-index: 10;
+  padding: 12px 0;
+}
+
+.optionBtn {
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--gray);
+  padding: 4px 16px;
+}
+
+.optionBtn:hover,
+.optionActive {
+  color: var(--main);
+}
+
+.mileageBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.mileageBox .input:first-child {
+  border-radius: 12px 0 0 12px;
+}
+
+.mileageBox .input:last-child {
+  border-left: 1px solid var(--gray-light);
+  border-radius: 0 12px 12px 0;
+}
+
+.searchBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 156px;
+  height: 44px;
+  border: none;
+  border-radius: 12px;
+  padding: 0 18px;
+  background: var(--button);
+  color: var(--white);
+  font-weight: 600;
+  align-self: end;
+}
+
+.searchBtn:hover {
+  background: var(--button-hover);
+}
+
+@media (max-width: 1180px) {
+  .panel {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+  }
+
+  .brandField,
+  .priceField,
+  .mileageField,
+  .searchBtn {
+    width: 100%;
+  }
+}

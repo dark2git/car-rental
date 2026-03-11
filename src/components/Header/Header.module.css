@@ -1,0 +1,40 @@
+.header {
+  background: var(--badges);
+  border-bottom: 1px solid var(--badges);
+}
+
+.inner {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--main);
+}
+
+.logo span {
+  color: var(--button);
+}
+
+.navList {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.navLink {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--main);
+}
+
+.navLink:hover,
+.active {
+  color: var(--button);
+}

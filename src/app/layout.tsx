@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "@/components/Header/Header";
 
 export const metadata: Metadata = {
-  title: "basic_sceleton",
-  description: "Minimal starter",
+  title: "Car Rental",
+  description: "Car rental catalog with backend filtering",
 };
 
 export default function RootLayout({
@@ -11,7 +12,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="uk">
-      <body>{children}</body>
+      <body>
+        <Header />
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
