@@ -16,33 +16,37 @@ export default function CatalogPage() {
   }, [loadVehicles, resetResults]);
 
   return (
-    <section className={`container ${styles.page}`}>
-      <Filters />
-
-      <div className={styles.grid}>
-        {vehicles.map((vehicle) => (
-          <VehicleCard key={vehicle.id} vehicle={vehicle} />
-        ))}
-      </div>
-
-      {!isLoading && vehicles.length === 0 && (
-        <p className={styles.empty}>No vehicles found.</p>
-      )}
-      {error && <p className={styles.error}>{error}</p>}
-
-      {hasMore && !isLoading && (
-        <div className={styles.loadMoreWrap}>
-          <button
-            type="button"
-            className={styles.loadMore}
-            onClick={() => loadVehicles(true)}
-          >
-            Load more
-          </button>
+    <section className={styles.page}>
+      <div className="container">
+        <div className={styles.filter_wrapper}>
+          <Filters />
         </div>
-      )}
 
-      {isLoading && <p className={styles.loading}>Loading...</p>}
+        <div className={styles.grid}>
+          {vehicles.map((vehicle) => (
+            <VehicleCard key={vehicle.id} vehicle={vehicle} />
+          ))}
+        </div>
+
+        {!isLoading && vehicles.length === 0 && (
+          <p className={styles.empty}>No vehicles found.</p>
+        )}
+        {error && <p className={styles.error}>{error}</p>}
+
+        {hasMore && !isLoading && (
+          <div className={styles.loadMoreWrap}>
+            <button
+              type="button"
+              className={styles.loadMore}
+              onClick={() => loadVehicles(true)}
+            >
+              Load more
+            </button>
+          </div>
+        )}
+
+        {isLoading && <p className={styles.loading}>Loading...</p>}
+      </div>
     </section>
   );
 }

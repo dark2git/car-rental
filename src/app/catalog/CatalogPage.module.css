@@ -1,5 +1,5 @@
 .page {
-  padding: 132px 0 120px;
+  padding: 84px 0 120px;
 }
 
 .grid {
@@ -29,7 +29,7 @@
 .loadMoreWrap {
   display: flex;
   justify-content: center;
-  margin-top: 72px;
+  margin-top: 80px;
 }
 
 .empty,
@@ -41,4 +41,10 @@
 
 .error {
   color: #b91c1c;
+}
+
+.filter_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

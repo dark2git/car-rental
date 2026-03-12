@@ -32,8 +32,9 @@ body {
 }
 
 .container {
-  width: min(1440px, 100%);
-  padding: 0 120px;
+  width: 100%;
+  max-width: 1440px;
+  padding-inline: clamp(16px, calc((100vw - 1200px) / 2), 120px);
   margin: 0 auto;
 }
 
