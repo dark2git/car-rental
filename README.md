@@ -1,4 +1,4 @@
-# Car Rental Skeleton
+# Car Rental
 
 > A Next.js + TypeScript skeleton project — a ready-to-extend foundation for a car rental web application with catalog browsing, filtering, favorites, and booking.
 
@@ -74,6 +74,6 @@ Frontend developer with practical experience in building responsive interfaces, 
 
 **Tech Stack:** JavaScript · React · TypeScript · Next.js · Zustand · HTML5 · CSS3 · Git · Docker · Linux · REST API
 
-- 💼 [LinkedIn](https://www.linkedin.com/in/vadym-samardak)
-- ✈️ [Telegram](https://t.me/dark2care)
-- 🐙 [GitHub](https://github.com/dark2git)
+- [LinkedIn](https://www.linkedin.com/in/vadym-samardak)
+- [Telegram](https://t.me/dark2care)
+- [GitHub](https://github.com/dark2git)
