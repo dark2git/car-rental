@@ -31,12 +31,18 @@ export default function VehicleCard({ vehicle }: Props) {
         />
         <button
           type="button"
-          className={`${styles.favoriteBtn} ${isFavorite ? styles.favoriteActive : ""}`}
+          className={styles.favoriteBtn}
           onClick={() => toggleFavorite(vehicle.id)}
           aria-label="Toggle favorite"
         >
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
-            <path d="M12 21s-7.5-4.5-9.5-9A5.5 5.5 0 0 1 12 5a5.5 5.5 0 0 1 9.5 7c-2 4.5-9.5 9-9.5 9Z" />
+          <svg
+            className={styles.favoriteIcon}
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+          >
+            <use
+              href={`/icons.svg#${isFavorite ? "icon-heartActive" : "icon-heartDefault"}`}
+            />
           </svg>
         </button>
       </div>

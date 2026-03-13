@@ -184,8 +184,10 @@ export default function BookingForm({ vehicleId, vehicleLabel }: Props) {
               aria-expanded={isDatePickerOpen}
               aria-label="Select booking date"
             >
-              <span className={!date ? styles.placeholder : undefined}>
-                {toDisplayDate(date)}
+              <span className={styles.dateValue}>
+                <span className={!date ? styles.placeholder : undefined}>
+                  {toDisplayDate(date)}
+                </span>
               </span>
             </button>
 
@@ -207,7 +209,13 @@ export default function BookingForm({ vehicleId, vehicleLabel }: Props) {
                     }
                     aria-label="Previous month"
                   >
-                    &lt;
+                    <svg
+                      className={styles.monthIconPrev}
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                    >
+                      <use href="/icons.svg#icon-arrowDown" />
+                    </svg>
                   </button>
 
                   <strong>{monthLabel}</strong>
@@ -223,7 +231,13 @@ export default function BookingForm({ vehicleId, vehicleLabel }: Props) {
                     }
                     aria-label="Next month"
                   >
-                    &gt;
+                    <svg
+                      className={styles.monthIconNext}
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                    >
+                      <use href="/icons.svg#icon-arrowDown" />
+                    </svg>
                   </button>
                 </div>
 
@@ -268,14 +282,15 @@ export default function BookingForm({ vehicleId, vehicleLabel }: Props) {
             onChange={(event) => setComment(event.target.value)}
           />
         </div>
-
-        <button
-          className={styles.submitButton}
-          disabled={isSubmitting}
-          type="submit"
-        >
-          {isSubmitting ? "Sending..." : "Send"}
-        </button>
+        <div className={styles.buttonWrapper}>
+          <button
+            className={styles.submitButton}
+            disabled={isSubmitting}
+            type="submit"
+          >
+            {isSubmitting ? "Sending..." : "Send"}
+          </button>
+        </div>
       </form>
     </div>
   );

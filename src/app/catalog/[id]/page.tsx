@@ -51,71 +51,141 @@ export default function VehicleDetailsPage() {
   return (
     <section className={`container ${styles.page}`}>
       <div className={styles.topRow}>
-        <div className={styles.imageWrap}>
-          <Image
-            src={vehicle.image}
-            alt={`${vehicle.brand} ${vehicle.model}`}
-            width={640}
-            height={512}
-            className={styles.image}
+        <div className={styles.leftColumn}>
+          <div className={styles.imageWrap}>
+            <Image
+              src={vehicle.image}
+              alt={`${vehicle.brand} ${vehicle.model}`}
+              width={640}
+              height={512}
+              className={styles.image}
+            />
+          </div>
+
+          <BookingForm
+            vehicleId={vehicle.id}
+            vehicleLabel={`${vehicle.brand} ${vehicle.model}`}
           />
         </div>
 
         <div className={styles.mainInfo}>
-          <div className={styles.titleRow}>
-            <h1 className={styles.title}>
-              {vehicle.brand} {vehicle.model}, {vehicle.year}
-            </h1>
-            <span className={styles.id}>Id: {vehicle.id.slice(-4)}</span>
+          <div className={styles.summaryBlock}>
+            <div className={styles.titleRow}>
+              <h1 className={styles.title}>
+                {vehicle.brand} {vehicle.model}, {vehicle.year}
+              </h1>
+              <span className={styles.id}>Id: {vehicle.id.slice(-4)}</span>
+            </div>
+
+            <div className={styles.locationLine}>
+              <p className={styles.locationText}>
+                <svg
+                  className={styles.metaIcon}
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#icon-location" />
+                </svg>
+                <span>
+                  {city}, {country}
+                </span>
+              </p>
+              <p className={styles.mileageText}>
+                <span>Mileage: {formatMileage(vehicle.mileage)}</span>
+              </p>
+            </div>
+
+            <p className={styles.price}>${vehicle.price}</p>
+
+            <p className={styles.description}>{vehicle.description}</p>
           </div>
 
-          <div className={styles.locationLine}>
-            <p className={styles.locationText}>
-              {city}, {country}
-            </p>
-            <p className={styles.mileageText}>
-              Mileage: {formatMileage(vehicle.mileage)}
-            </p>
+          <div className={styles.detailsBlock}>
+            <h3 className={styles.blockTitle}>Rental Conditions:</h3>
+            <ul className={styles.list}>
+              {vehicle.rentalConditions.map((condition) => (
+                <li key={condition} className={styles.listItem}>
+                  <svg
+                    className={styles.listIcon}
+                    viewBox="0 0 16 16"
+                    aria-hidden="true"
+                  >
+                    <use href="/icons.svg#icon-check" />
+                  </svg>
+                  <span>{condition}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <p className={styles.price}>${vehicle.price}</p>
+          <div className={styles.detailsBlock}>
+            <h3 className={styles.blockTitle}>Car Specifications:</h3>
+            <ul className={styles.list}>
+              <li className={styles.listItem}>
+                <svg
+                  className={styles.listIcon}
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#icon-calendar" />
+                </svg>
+                <span>Year: {vehicle.year}</span>
+              </li>
+              <li className={styles.listItem}>
+                <svg
+                  className={styles.listIcon}
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#icon-car" />
+                </svg>
+                <span>Type: {vehicle.type}</span>
+              </li>
+              <li className={styles.listItem}>
+                <svg
+                  className={styles.listIcon}
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#icon-fuel" />
+                </svg>
+                <span>Fuel Consumption: {vehicle.fuelConsumption}</span>
+              </li>
+              <li className={styles.listItem}>
+                <svg
+                  className={styles.listIcon}
+                  viewBox="0 0 16 16"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#icon-gear" />
+                </svg>
+                <span>Engine Size: {vehicle.engineSize}</span>
+              </li>
+            </ul>
+          </div>
 
-          <p className={styles.description}>{vehicle.description}</p>
-
-          <h3 className={styles.blockTitle}>Rental Conditions:</h3>
-          <ul className={styles.list}>
-            {vehicle.rentalConditions.map((condition) => (
-              <li key={condition}>{condition}</li>
-            ))}
-          </ul>
-
-          <h3 className={styles.blockTitle}>Car Specifications:</h3>
-          <ul className={styles.list}>
-            <li>Year: {vehicle.year}</li>
-            <li>Type: {vehicle.type}</li>
-            <li>Fuel Consumption: {vehicle.fuelConsumption}</li>
-            <li>Engine Size: {vehicle.engineSize}</li>
-          </ul>
-
-          <h3 className={styles.blockTitle}>
-            Accessories and functionalities:
-          </h3>
-          <ul className={styles.list}>
-            {[...vehicle.accessories, ...vehicle.functionalities].map(
-              (item) => (
-                <li key={item}>{item}</li>
-              ),
-            )}
-          </ul>
+          <div className={styles.detailsBlock}>
+            <h3 className={styles.blockTitle}>
+              Accessories and functionalities:
+            </h3>
+            <ul className={styles.list}>
+              {[...vehicle.accessories, ...vehicle.functionalities].map(
+                (item) => (
+                  <li key={item} className={styles.listItem}>
+                    <svg
+                      className={styles.listIcon}
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                    >
+                      <use href="/icons.svg#icon-check" />
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ),
+              )}
+            </ul>
+          </div>
         </div>
-      </div>
-
-      <div className={styles.bottomRow}>
-        <BookingForm
-          vehicleId={vehicle.id}
-          vehicleLabel={`${vehicle.brand} ${vehicle.model}`}
-        />
-        <div />
       </div>
     </section>
   );

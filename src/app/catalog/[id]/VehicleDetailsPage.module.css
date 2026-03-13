@@ -1,12 +1,18 @@
 .page {
-  padding: 48px 0 96px;
+  padding-block: 84px 96px;
 }
 
 .topRow {
   display: grid;
-  grid-template-columns: 640px 488px;
+  grid-template-columns: minmax(320px, 640px) 488px;
   gap: 72px;
   align-items: start;
+}
+
+.leftColumn {
+  display: grid;
+  gap: 40px;
+  align-content: start;
 }
 
 .imageWrap {
@@ -22,8 +28,20 @@
 }
 
 .mainInfo {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.summaryBlock {
   display: grid;
-  gap: 20px;
+  gap: 16px;
+}
+
+.detailsBlock {
+  display: grid;
+  gap: 16px;
 }
 
 .titleRow {
@@ -53,17 +71,21 @@
 
 .locationText,
 .mileageText {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 16px;
   line-height: 20px;
   color: var(--main);
   font-weight: 500;
 }
 
-.locationText::before {
-  content: "\25CE";
-  margin-right: 6px;
-  color: var(--gray);
-  font-size: 11px;
+.metaIcon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  color: var(--main);
+  fill: var(--main);
 }
 
 .price {
@@ -80,7 +102,6 @@
 }
 
 .blockTitle {
-  margin-top: 20px;
   font-size: 20px;
   line-height: 24px;
   font-weight: 600;
@@ -89,20 +110,26 @@
 .list {
   list-style: none;
   display: grid;
-  gap: 16px;
+  gap: 12px;
   color: var(--main);
 }
 
-.list li::before {
-  content: "\25CE";
-  font-size: 10px;
-  margin-right: 8px;
-  color: var(--gray);
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.bottomRow {
-  margin-top: 24px;
-  display: grid;
-  grid-template-columns: 640px 488px;
-  gap: 72px;
+.listIcon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  fill: var(--main);
+}
+
+@media (max-width: 1023px) {
+  .topRow {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 }

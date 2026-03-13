@@ -34,8 +34,26 @@ body {
 .container {
   width: 100%;
   max-width: 1440px;
-  padding-inline: clamp(16px, calc((100vw - 1200px) / 2), 120px);
+  padding-inline: 120px;
   margin: 0 auto;
+}
+
+@media (max-width: 1439px) {
+  .container {
+    padding-inline: 64px;
+  }
+}
+
+@media (max-width: 788px) {
+  .container {
+    padding-inline: 32px;
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    padding-inline: 16px;
+  }
 }
 
 a {

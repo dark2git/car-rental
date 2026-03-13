@@ -65,12 +65,32 @@
   color: var(--main);
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   font-size: 16px;
   line-height: 20px;
   font-weight: 500;
   cursor: pointer;
   outline: none;
+}
+
+.dateValue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dateIcon {
+  width: 16px;
+  height: 16px;
+  fill: var(--gray);
+  flex: 0 0 16px;
+}
+
+.chevronIcon {
+  width: 16px;
+  height: 16px;
+  fill: var(--gray);
+  flex: 0 0 16px;
 }
 
 .placeholder {
@@ -110,9 +130,24 @@
   border-radius: 8px;
   background: var(--white);
   color: var(--main);
-  font-size: 14px;
-  line-height: 1;
+  display: grid;
+  place-items: center;
   cursor: pointer;
+}
+
+.monthIconPrev,
+.monthIconNext {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.monthIconPrev {
+  transform: rotate(90deg);
+}
+
+.monthIconNext {
+  transform: rotate(-90deg);
 }
 
 .weekdays {
@@ -178,6 +213,11 @@
   height: 88px;
   padding: 12px 20px 56px;
   resize: none;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .submitButton {

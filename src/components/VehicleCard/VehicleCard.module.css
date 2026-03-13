@@ -18,26 +18,21 @@
 
 .favoriteBtn {
   position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 28px;
-  height: 28px;
+  top: 16px;
+  right: 16px;
   border: none;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: rgba(255, 255, 255, 0.88);
+  background: transparent;
+  cursor: pointer;
 }
 
-.favoriteBtn svg {
-  fill: none;
-  stroke: #ffffff;
-  stroke-width: 1.8;
-}
-
-.favoriteActive svg {
-  fill: var(--button);
-  stroke: var(--button);
+.favoriteIcon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  fill: #ffffff;
 }
 
 .content {

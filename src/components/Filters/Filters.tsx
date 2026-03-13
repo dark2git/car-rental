@@ -92,11 +92,15 @@ export default function Filters() {
           }}
         >
           <span>{formValues.brand ?? "Choose a brand"}</span>
-          <span
-            className={`${styles.chevron} ${isBrandOpen ? styles.chevronUp : ""}`}
+          <svg
+            className={styles.chevron}
+            viewBox="0 0 16 16"
+            aria-hidden="true"
           >
-            ▾
-          </span>
+            <use
+              href={`/icons.svg#${isBrandOpen ? "icon-arrowUp" : "icon-arrowDown"}`}
+            />
+          </svg>
         </button>
 
         {isBrandOpen && (
@@ -141,11 +145,15 @@ export default function Filters() {
           <span>
             {formValues.price ? `To $${formValues.price}` : "Choose a price"}
           </span>
-          <span
-            className={`${styles.chevron} ${isPriceOpen ? styles.chevronUp : ""}`}
+          <svg
+            className={styles.chevron}
+            viewBox="0 0 16 16"
+            aria-hidden="true"
           >
-            ▾
-          </span>
+            <use
+              href={`/icons.svg#${isPriceOpen ? "icon-arrowUp" : "icon-arrowDown"}`}
+            />
+          </svg>
         </button>
 
         {isPriceOpen && (
