@@ -1,6 +1,6 @@
 # Car Rental
 
-> A Next.js + TypeScript skeleton project — a ready-to-extend foundation for a car rental web application with catalog browsing, filtering, favorites, and booking.
+> A Next.js + TypeScript project — a ready-to-extend foundation for a car rental web application with catalog browsing, filtering, favorites, and booking.
 
 ## Features
 
