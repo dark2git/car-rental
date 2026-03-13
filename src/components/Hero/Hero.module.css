@@ -1,7 +1,13 @@
 .hero {
   position: relative;
   height: 700px;
-  background-color: blanchedalmond;
+  background-color: #121417;
+  background-image: url("/Picture.webp");
+  background-image: image-set(
+    url("/Picture.webp") 1x,
+    url("/Picture@2x.webp") 2x,
+    url("/Picture@3x.webp") 3x
+  );
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
