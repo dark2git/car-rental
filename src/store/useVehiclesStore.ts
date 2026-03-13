@@ -3,6 +3,12 @@ import { persist } from "zustand/middleware";
 import { fetchVehicles } from "@/lib/api";
 import type { Vehicle, VehicleFilters } from "@/lib/types";
 
+const sanitizeFilters = (filters: VehicleFilters): VehicleFilters => {
+  return Object.fromEntries(
+    Object.entries(filters).filter(([, value]) => value !== undefined),
+  ) as VehicleFilters;
+};
+
 type VehiclesState = {
   vehicles: Vehicle[];
   favorites: string[];
@@ -12,7 +18,12 @@ type VehiclesState = {
   hasMore: boolean;
   isLoading: boolean;
   error: string | null;
+  setFilterValue: <K extends keyof VehicleFilters>(
+    key: K,
+    value: VehicleFilters[K] | undefined,
+  ) => void;
   setFilters: (filters: VehicleFilters) => Promise<void>;
+  applyFilters: () => Promise<void>;
   resetResults: () => void;
   loadVehicles: (append?: boolean) => Promise<void>;
   toggleFavorite: (vehicleId: string) => void;
@@ -30,9 +41,18 @@ export const useVehiclesStore = create<VehiclesState>()(
       isLoading: false,
       error: null,
 
+      setFilterValue: (key, value) => {
+        set((state) => ({
+          filters: sanitizeFilters({
+            ...state.filters,
+            [key]: value,
+          }),
+        }));
+      },
+
       setFilters: async (filters) => {
         set({
-          filters,
+          filters: sanitizeFilters(filters),
           page: 1,
           vehicles: [],
           hasMore: true,
@@ -40,6 +60,12 @@ export const useVehiclesStore = create<VehiclesState>()(
         });
 
         await get().loadVehicles(false);
+      },
+
+      applyFilters: async () => {
+        const { filters } = get();
+
+        await get().setFilters(filters);
       },
 
       resetResults: () => {

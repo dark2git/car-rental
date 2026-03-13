@@ -2,16 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import { fetchBrands } from "@/lib/api";
-import type { VehicleFilters } from "@/lib/types";
 import { useVehiclesStore } from "@/store/useVehiclesStore";
 import styles from "./Filters.module.css";
 
 const PRICE_OPTIONS = [30, 40, 50, 60, 70, 80];
 
 export default function Filters() {
-  const setFilters = useVehiclesStore((state) => state.setFilters);
-
-  const [formValues, setFormValues] = useState<VehicleFilters>({});
+  const filters = useVehiclesStore((state) => state.filters);
+  const setFilterValue = useVehiclesStore((state) => state.setFilterValue);
+  const applyFilters = useVehiclesStore((state) => state.applyFilters);
   const [brands, setBrands] = useState<string[]>([]);
   const [isBrandOpen, setIsBrandOpen] = useState(false);
   const [isPriceOpen, setIsPriceOpen] = useState(false);
@@ -52,31 +51,18 @@ export default function Filters() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await setFilters(formValues);
+    await applyFilters();
   };
 
-  const setNumber = (key: keyof VehicleFilters, value: string) => {
-    setFormValues((prev) => {
-      if (!value) {
-        const copy = { ...prev };
-        delete copy[key];
-        return copy;
-      }
-
-      return { ...prev, [key]: Number(value) };
-    });
+  const setNumber = (
+    key: "price" | "mileageFrom" | "mileageTo",
+    value: string,
+  ) => {
+    setFilterValue(key, value ? Number(value) : undefined);
   };
 
-  const setText = (key: keyof VehicleFilters, value: string) => {
-    setFormValues((prev) => {
-      if (!value) {
-        const copy = { ...prev };
-        delete copy[key];
-        return copy;
-      }
-
-      return { ...prev, [key]: value };
-    });
+  const setText = (key: "brand", value: string) => {
+    setFilterValue(key, value || undefined);
   };
 
   return (
@@ -91,7 +77,7 @@ export default function Filters() {
             setIsPriceOpen(false);
           }}
         >
-          <span>{formValues.brand ?? "Choose a brand"}</span>
+          <span>{filters.brand ?? "Choose a brand"}</span>
           <svg
             className={styles.chevron}
             viewBox="0 0 16 16"
@@ -119,7 +105,7 @@ export default function Filters() {
               <button
                 type="button"
                 key={brand}
-                className={`${styles.optionBtn} ${formValues.brand === brand ? styles.optionActive : ""}`}
+                className={`${styles.optionBtn} ${filters.brand === brand ? styles.optionActive : ""}`}
                 onClick={() => {
                   setText("brand", brand);
                   setIsBrandOpen(false);
@@ -143,7 +129,7 @@ export default function Filters() {
           }}
         >
           <span>
-            {formValues.price ? `To $${formValues.price}` : "Choose a price"}
+            {filters.price ? `To $${filters.price}` : "Choose a price"}
           </span>
           <svg
             className={styles.chevron}
@@ -172,7 +158,7 @@ export default function Filters() {
               <button
                 type="button"
                 key={price}
-                className={`${styles.optionBtn} ${formValues.price === price ? styles.optionActive : ""}`}
+                className={`${styles.optionBtn} ${filters.price === price ? styles.optionActive : ""}`}
                 onClick={() => {
                   setNumber("price", String(price));
                   setIsPriceOpen(false);
@@ -193,7 +179,7 @@ export default function Filters() {
             type="number"
             min={0}
             placeholder="From"
-            value={formValues.mileageFrom ?? ""}
+            value={filters.mileageFrom ?? ""}
             onChange={(e) => setNumber("mileageFrom", e.target.value)}
           />
           <input
@@ -201,7 +187,7 @@ export default function Filters() {
             type="number"
             min={0}
             placeholder="To"
-            value={formValues.mileageTo ?? ""}
+            value={filters.mileageTo ?? ""}
             onChange={(e) => setNumber("mileageTo", e.target.value)}
           />
         </div>
